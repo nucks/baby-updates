@@ -125,6 +125,7 @@ const App = () => {
                                     key={key}
                                 >
                                     {update.update}
+                                    {update.image ? <span dangerouslySetInnerHTML={{ __html: update.image }}/> : null}
                                 </Timeline.Item>
                             );
                         })}
