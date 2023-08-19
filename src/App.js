@@ -8,13 +8,13 @@ import Pusher from "pusher-js";
 const { Countdown: CDC } = Statistic;
 
 const App = () => {
-    const dueDate = dayjs("2023-04-24").hour(1).format();
-    const baseUrl = "https://jodb.onrender.com";
+    const dueDate = dayjs("2023-08-28").hour(1).format();
+    const baseUrl = process.env.REACT_BASE_URL;
     const [updates, setUpdates] = useState({});
     const [countdown, setCountDown] = useState(true);
     const [reload, setReload] = useState(false);
 
-    const pusher = new Pusher("29ce6a7e07fa49dc518d", {
+    const pusher = new Pusher(process.env.REACT_PUSHER_ID, {
         cluster: "us3",
     });
 
@@ -57,7 +57,7 @@ const App = () => {
     }, [updates]);
 
     const formatDate = (dbDate) => {
-        const date = dayjs(dbDate).format("MMM-DD-YY");
+        const date = dayjs(dbDate).format("MMMM DD, YYYY");
         const time = dayjs(dbDate).format("h:mm A");
 
         if (dbDate.endsWith("00:00.000Z")) {
@@ -68,7 +68,7 @@ const App = () => {
     };
 
     return (
-        <Container h="100vh" w="100vw">
+        <Container h="100vh" w="100vw" pt="10">
             {updates?.length > 0 ? (
                 <Timeline
                     pending={
