@@ -57,7 +57,7 @@ const App = () => {
     }, [updates, baseUrl]);
 
     const formatDate = (dbDate) => {
-        const date = dayjs(dbDate).format("MMMM DD, YYYY");
+        const date = dayjs(dbDate).format("MMM-DD-YY");
         const time = dayjs(dbDate).format("h:mm A");
 
         if (dbDate.endsWith("00:00.000Z")) {
