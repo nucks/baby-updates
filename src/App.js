@@ -10,20 +10,29 @@ const { Countdown: CDC } = Statistic;
 const App = () => {
     const dueDate = dayjs("2023-08-28").hour(1).format();
     const baseUrl = process.env.REACT_APP_BASE_URL;
+    
     const [updates, setUpdates] = useState({});
     const [countdown, setCountDown] = useState(true);
     const [reload, setReload] = useState(false);
 
-    const pusher = new Pusher(process.env.REACT_APP_PUSHER_ID, {
-        cluster: "us3",
-    });
+    React.useEffect(() => {
+        const pusher = new Pusher(process.env.REACT_APP_PUSHER_ID, {
+            cluster: "us3",
+        });
 
-    var channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", function ({ message }) {
-        if (message === "New update added!") {
-            setReload(reload === true ? false : true);
-        }
-    });
+        var channel = pusher.subscribe("my-channel");
+
+        channel.bind("my-event", function ({ message }) {
+            if (message === "New update added!") {
+                setReload(reload === true ? false : true);
+            }
+        });
+
+        return (() => {
+			pusher.unsubscribe('my-channel')
+		})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     useEffect(() => {
         const loadData = async () => {
