@@ -54,7 +54,7 @@ const App = () => {
         return () => {
             clearInterval(intervalId);
         };
-    }, [updates]);
+    }, [updates, baseUrl]);
 
     const formatDate = (dbDate) => {
         const date = dayjs(dbDate).format("MMMM DD, YYYY");
