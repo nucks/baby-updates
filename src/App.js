@@ -46,9 +46,7 @@ const App = () => {
         };
 
         const intervalId = setInterval(() => {
-            if (Object.keys(updates).length === 0) {
-                loadData();
-            }
+            loadData();
         }, 2000);
 
         return () => {
