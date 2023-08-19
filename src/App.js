@@ -52,7 +52,8 @@ const App = () => {
         return () => {
             clearInterval(intervalId);
         };
-    }, [updates, baseUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [updates]);
 
     const formatDate = (dbDate) => {
         const date = dayjs(dbDate).format("MMM-DD-YY");
