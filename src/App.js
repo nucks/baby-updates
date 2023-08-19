@@ -4,6 +4,7 @@ import { Container, Spinner, AbsoluteCenter } from "@chakra-ui/react";
 import * as dayjs from "dayjs";
 import "./index.css";
 import Pusher from "pusher-js";
+import capri from './capri-island.png'
 
 const { Countdown: CDC } = Statistic;
 
@@ -77,6 +78,8 @@ const App = () => {
 
     return (
         <Container h="100vh" w="100vw" pt="10">
+            <img src={capri} alt="Capri, Italy" style={{ marginBottom: '20px', borderRadius: '5px' }} />
+            {updates?.length > 0 ? <><h1 style={{ fontSize: '30px' }}> <b>Capri Updates</b></h1> <p style={{ marginBottom: '40px' }}>Welcome! No need to refresh. Updates will appear automatically.</p></> : null}
             {updates?.length > 0 ? (
                 <Timeline
                     pending={
